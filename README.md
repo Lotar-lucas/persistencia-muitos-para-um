@@ -1,11 +1,13 @@
-# Projeto de Estudo - Persistência Muitos-para-Um
+# Salvando Entidade Associada para Um
 
-Este projeto é um projeto de estudo focado em **persistência de relacionamento muitos-para-um** utilizando Spring Boot e JPA/Hibernate.
+Este é um projeto de estudo focado em **salvar uma entidade associando-a a um relacionamento** utilizando Spring Boot e JPA/Hibernate.
+
+**Exemplo prático:** Salvar uma `Person` associando-a a um `Department` existente.
 
 ## Objetivos de Aprendizado
 
-- Compreender como implementar e persistir relacionamentos muitos-para-um (many-to-one) entre entidades JPA
-- Aprender as melhores práticas para salvar entidades relacionadas, incluindo o uso de objetos gerenciados pela JPA versus criação de novas instâncias
+- Compreender como salvar uma entidade associando-a a uma referência (usando `@ManyToOne`)
+- Aprender a diferença entre usar `getReferenceById()` (objeto gerenciado pela JPA) versus criar uma nova instância apenas com o ID
 
 ## Tecnologias Utilizadas
 
