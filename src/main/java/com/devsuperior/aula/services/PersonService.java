@@ -1,5 +1,6 @@
 package com.devsuperior.aula.services;
 
+import com.devsuperior.aula.dto.PersonDTO;
 import com.devsuperior.aula.dto.PersonDepartamentDTO;
 import com.devsuperior.aula.entities.Department;
 import com.devsuperior.aula.entities.Person;
@@ -18,6 +19,18 @@ public class PersonService {
     this.departmentRepository = departmentRepository;
   }
 
+  /**
+   * Método que persiste relação para um com o body da requisição no formato:
+   * {
+   *  "name": "Nova Pessoa",
+   *  "salary": 8000.0,
+   *  "department": {
+   *  "id": 1
+   *  }
+   * }
+   * @param dto
+   * @return
+   */
   public PersonDepartamentDTO insert(PersonDepartamentDTO dto) {
     Person entity = new Person();
     entity.setName(dto.getName());
@@ -33,5 +46,27 @@ public class PersonService {
 
     entity = personRepository.save(entity);
     return new PersonDepartamentDTO(entity);
+  }
+
+  /**
+   * Método que persiste relação para um com o body da requisição no formato:
+   * {
+   *  "name": "Nova Pessoa",
+   *  "salary": 8000.0,
+   *  "departmentId":  1
+   * }
+   * @param dto
+   * @return
+   */
+  public PersonDTO insert(PersonDTO dto) {
+    Person entity = new Person();
+    entity.setName(dto.getName());
+    entity.setSalary(dto.getSalary());
+
+    Department dept = departmentRepository.getReferenceById(dto.getDepartmentId());
+    entity.setDepartment(dept);
+
+    entity = personRepository.save(entity);
+    return new PersonDTO(entity);
   }
 }
